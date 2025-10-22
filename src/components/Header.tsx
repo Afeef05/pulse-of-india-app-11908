@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
+import ChatbotDropdown from "@/components/ChatbotDropdown";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -27,51 +28,56 @@ const Header = () => {
             <span className="text-xl font-bold text-foreground">AgriPredict</span>
           </div>
           
-          <nav className="hidden md:flex items-center gap-2">
-            <Button 
-              variant={isActive("/") ? "default" : "ghost"} 
-              size="sm" 
-              className="gap-2"
-              onClick={() => navigate("/")}
-            >
-              <BarChart3 className="w-4 h-4" />
-              Dashboard
-            </Button>
-            <Button 
-              variant={isActive("/data-explorer") ? "default" : "ghost"} 
-              size="sm" 
-              className="gap-2"
-              onClick={() => navigate("/data-explorer")}
-            >
-              <FileText className="w-4 h-4" />
-              Data Explorer
-            </Button>
-            <Button 
-              variant={isActive("/predict-yield") ? "default" : "ghost"} 
-              size="sm" 
-              className="gap-2"
-              onClick={() => navigate("/predict-yield")}
-            >
-              <TrendingUp className="w-4 h-4" />
-              Predict Yield
-            </Button>
-            <Button 
-              variant={isActive("/data-analysis") ? "default" : "ghost"} 
-              size="sm" 
-              className="gap-2"
-              onClick={() => navigate("/data-analysis")}
-            >
-              <FileText className="w-4 h-4" />
-              Data Analysis
-            </Button>
-          </nav>
-
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
-                <Menu className="h-5 w-5" />
+          <div className="hidden md:flex items-center gap-2">
+            <nav className="flex items-center gap-2">
+              <Button 
+                variant={isActive("/") ? "default" : "ghost"} 
+                size="sm" 
+                className="gap-2"
+                onClick={() => navigate("/")}
+              >
+                <BarChart3 className="w-4 h-4" />
+                Dashboard
               </Button>
-            </SheetTrigger>
+              <Button 
+                variant={isActive("/data-explorer") ? "default" : "ghost"} 
+                size="sm" 
+                className="gap-2"
+                onClick={() => navigate("/data-explorer")}
+              >
+                <FileText className="w-4 h-4" />
+                Data Explorer
+              </Button>
+              <Button 
+                variant={isActive("/predict-yield") ? "default" : "ghost"} 
+                size="sm" 
+                className="gap-2"
+                onClick={() => navigate("/predict-yield")}
+              >
+                <TrendingUp className="w-4 h-4" />
+                Predict Yield
+              </Button>
+              <Button 
+                variant={isActive("/data-analysis") ? "default" : "ghost"} 
+                size="sm" 
+                className="gap-2"
+                onClick={() => navigate("/data-analysis")}
+              >
+                <FileText className="w-4 h-4" />
+                Data Analysis
+              </Button>
+            </nav>
+            <ChatbotDropdown />
+          </div>
+
+          <div className="md:hidden flex items-center gap-2">
+            <ChatbotDropdown />
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
             <SheetContent>
               <nav className="flex flex-col gap-4 mt-8">
                 <Button 
@@ -108,7 +114,8 @@ const Header = () => {
                 </Button>
               </nav>
             </SheetContent>
-          </Sheet>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>
