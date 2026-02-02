@@ -1,5 +1,6 @@
 "use client";
 
+// Pulse of India - Crop Yield Dashboard
 import Header from "@/components/Header";
 import StatsCard from "@/components/StatsCard";
 import TopCropsChart from "@/components/TopCropsChart";
